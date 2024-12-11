@@ -3,8 +3,9 @@
 import styles from '@/app/page.module.sass'
 import style from './page.module.sass'
 import {Tilt} from 'react-tilt'
+import Image from 'next/image'
 
-export default function Card({typeCard, initial}) {
+export default function Card(props) {
 
     const defaultOptions = {
         reverse:        false, 
@@ -24,11 +25,11 @@ export default function Card({typeCard, initial}) {
                 <div className={style.hist}>
                     <div className={style.boxHist}></div>
                 </div>
-                <div id={typeCard} className={style.card}>
-                    <div className={styles.content}>
-                        {initial == true ?
+                <div id={props.typeCard} className={style.card}>
+                    {props.initial == true ?
+                        <div className={styles.content}>
                             <div className={style.initialCard}>
-                                {typeCard == 'player' ?
+                                {props.seita == 'camarilla' ?
                                     <div>
                                         <h2>Camarilla</h2>
                                         <p className={style.card_text}>
@@ -51,15 +52,24 @@ export default function Card({typeCard, initial}) {
                                         </p>
                                     </div>
                                 }
-                            </div> : 
-                            <>
-                                <div id={style.imagem_card}></div>
-                                <div id={style.card_name}></div>
-                                <div id={style.card_clan}></div>
-                                <div id={style.card_opcoes}></div>
-                            </>
-                        }
-                    </div>
+                            </div> 
+                        </div>
+                        : 
+                        <div className={styles.content}>
+                            <div id={style.imagem_card}>
+                                <Image 
+                                    src={props.drawCard.imagem}
+                                    alt={props.drawCard.nome}
+                                    width={229}
+                                    height={319}
+                                    priority
+                                />
+                            </div>
+                            <div id={style.card_name}><p>{props.drawCard.nome}</p></div>
+                            <div id={style.card_clan}>{props.drawCard.cla}</div>
+                            <div id={style.card_opcoes}></div>
+                        </div>
+                    }
                 </div>
             </div>
         </Tilt>
