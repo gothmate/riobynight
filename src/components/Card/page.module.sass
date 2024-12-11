@@ -1,5 +1,5 @@
 .content 
-  position: absolute
+  position: relative
   left: 0
   top: 0
   padding: 1.25rem
@@ -19,6 +19,7 @@
     width: 14rem
     height: 20rem
     border-radius: 10px
+    overflow: hidden
     
 .initialCard
     position: absolute
@@ -60,3 +61,35 @@
   font-weight: 400
   text-align: justify
 
+#imagem_card
+  width: 100%
+  height: 100%
+
+#imagem_card img
+  position: absolute
+  top: 0
+  left: 0
+
+#card_name
+  display: flex
+  width: fit-content
+  position: absolute
+  top: 9.2%
+  left: 2.5rem
+  font-size: 0.9rem
+  color: #5f1313
+  pointer-events: none
+
+#card_clan
+  display: flex
+  flex-direction: column
+  position: absolute
+  width: fit-content
+  padding: 3px
+  top: 2.5%
+  left: 1.5rem
+  font-size: 0.9rem
+  font-weight: 800
+  color: var(--bloodRed)
+  z-index: 1
+  pointer-events: none
