@@ -5,7 +5,7 @@ import style from './page.module.sass'
 import {Tilt} from 'react-tilt'
 import Image from 'next/image'
 
-export default function Card(props) {
+export default function Card(props: any) {
 
     const defaultOptions = {
         reverse:        false, 
@@ -19,7 +19,9 @@ export default function Card(props) {
         easing:         "cubic-bezier(.03,.98,.52,.99)",
     }
 
+
     return (
+        <>
         <Tilt options={defaultOptions}>
             <div className={style.box} data-tilt data-tilt-max="50" data-tilt-speed="400" data-tilt-perspective="500">
                 <div className={style.hist}>
@@ -58,20 +60,28 @@ export default function Card(props) {
                         <div className={styles.content}>
                             <div id={style.imagem_card}>
                                 <Image 
-                                    src={props.drawCard.imagem}
-                                    alt={props.drawCard.nome}
+                                    src={props.drawCard[0].imagem}
+                                    alt={props.drawCard[0].nome}
                                     width={229}
                                     height={319}
                                     priority
-                                />
+                                    />
                             </div>
-                            <div id={style.card_name}><p>{props.drawCard.nome}</p></div>
-                            <div id={style.card_clan}>{props.drawCard.cla}</div>
+                            <div id={style.card_name}><p>{props.drawCard[0].nome}</p></div>
+                            <div id={style.card_clan}>{props.drawCard[0].cla}</div>
                             <div id={style.card_opcoes}></div>
                         </div>
                     }
                 </div>
             </div>
         </Tilt>
+        {
+            props.initial == false ?
+                <div className={style.description} hidden={true}>
+                    {props.drawCard[0].descricao}
+                </div>
+            : ''
+        }
+        </>
     )
 }
